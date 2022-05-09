@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@500&display=swap');
+
+.authentication {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-content: center;
+  background-color: var(--white);
+}
+
+.authentication__container {
+  padding: 2.5rem 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0.1rem 0.1rem 0.1rem var(--black);
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.authentication__logo {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2rem;
+  color: var(--accent);
+  letter-spacing: 0.2rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.authentication__inputContainer {
+  color: var(--black);
+  margin: 1rem 0rem;
+}
+
+.authentication__inputLabel {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.authentication__input {
+  width: 15rem;
+  padding: 0.3rem 0.35rem;
+  outline: none;
+  border: 0.02rem solid var(--black);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.04rem;
+  font-weight: 500;
+  border-radius: 0.3rem;
+  color: var(--black);
+}
+
+.authentication__button {
+  background-color: var(--accent);
+  padding: 0.25rem 0.3rem;
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  margin: 1rem 0rem;
+}
+
+.authentication__smallText {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.highlightedText {
+  cursor: pointer;
+  color: var(--accent);
+}
