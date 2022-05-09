@@ -11,7 +11,7 @@
 .authentication__container {
   padding: 2.5rem 1.5rem;
   border-radius: 1rem;
-  box-shadow: 0.1rem 0.1rem 0.1rem var(--black);
+  box-shadow: 0.1rem 0.1rem 0.4rem var(--inactive);
   background-color: var(--white);
   display: flex;
   align-items: center;
@@ -50,7 +50,7 @@
   letter-spacing: 0.04rem;
   font-weight: 500;
   border-radius: 0.3rem;
-  color: var(--black);
+  color: var(--inactive);
 }
 
 .authentication__button {

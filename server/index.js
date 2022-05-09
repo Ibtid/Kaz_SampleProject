@@ -1,8 +1,11 @@
+require('dotenv').config();
 const app = require('./server');
 
-app.listen(5000, (err) => {
+const PORT = process.env.PORT;
+
+app.listen(PORT, (err) => {
   if (err) {
     console.log(err);
   }
-  console.log('Server started on port: ', 5000);
+  console.log('Server started on port: ', PORT);
 });
