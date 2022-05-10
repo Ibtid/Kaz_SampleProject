@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { register } from '../../API/user';
 import './Authentication.css';
 
 const Authentication = () => {
   const [hasAccount, setHasAccount] = useState(false);
 
   const [formData, setFormData] = useState({
-    userName: '',
+    username: '',
     email: '',
     password: '',
   });
@@ -14,11 +15,15 @@ const Authentication = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const resgister = () => {
+  const resgisterClicked = () => {
     console.log(formData);
+
+    register(formData).then((response) => {
+      console.log(response);
+    });
   };
 
-  const login = () => {
+  const loginClicked = () => {
     console.log(formData);
   };
 
@@ -30,7 +35,7 @@ const Authentication = () => {
           <div className='authentication__inputContainer'>
             <div className='authentication__inputLabel'>Username</div>
             <input
-              name='userName'
+              name='username'
               type='text'
               placeholder='Your name'
               className='authentication__input'
@@ -62,11 +67,11 @@ const Authentication = () => {
           />
         </div>
         {hasAccount ? (
-          <div className='authentication__button' onClick={login}>
+          <div className='authentication__button' onClick={loginClicked}>
             Login
           </div>
         ) : (
-          <div className='authentication__button' onClick={resgister}>
+          <div className='authentication__button' onClick={resgisterClicked}>
             Register
           </div>
         )}
