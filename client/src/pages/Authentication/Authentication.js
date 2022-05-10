@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { register } from '../../API/user';
+import { register, login } from '../../API/user';
 import './Authentication.css';
 
 const Authentication = () => {
@@ -17,10 +17,8 @@ const Authentication = () => {
   };
 
   const resgisterClicked = () => {
-    console.log(formData);
-
     register(formData).then((response) => {
-      console.log(response.errors);
+      console.log(response);
       if (response.errors) {
         setErrors(response.errors);
       }
@@ -28,7 +26,12 @@ const Authentication = () => {
   };
 
   const loginClicked = () => {
-    console.log(formData);
+    login(formData).then((response) => {
+      console.log(response);
+      if (response.errors) {
+        setErrors(response.errors);
+      }
+    });
   };
 
   return (
@@ -109,6 +112,7 @@ const Authentication = () => {
               className='highlightedText'
               onClick={() => {
                 setHasAccount(true);
+                setErrors([]);
               }}>
               Login
             </span>
@@ -120,6 +124,7 @@ const Authentication = () => {
               className='highlightedText'
               onClick={() => {
                 setHasAccount(false);
+                setErrors([]);
               }}>
               Register
             </span>

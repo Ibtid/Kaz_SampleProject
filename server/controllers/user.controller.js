@@ -4,13 +4,27 @@ const jwt = require('jsonwebtoken');
 
 const login = async (req, res) => {
   const { email, password } = req.body;
+
+  let errors = {};
+  if (email.length === 0) {
+    errors.email = 'Email cannot be empty';
+  } else if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+    errors.email = 'Enter a valid email address';
+  }
+  if (password.length < 6) {
+    errors.password = 'Password needs at least 6 characters';
+  }
+  if (errors) {
+    return res.json({ errors: errors });
+  }
+
   let existingUser;
   try {
     existingUser = await User.findOne({ email });
   } catch (err) {
     console.log(err);
     return res.json({
-      errors: [{ technical: 'Login failed please try again' }],
+      errors: { technical: 'Login failed please try again' },
     });
   }
 
@@ -18,10 +32,7 @@ const login = async (req, res) => {
 
   if (!existingUser) {
     return res.json({
-      errors: [
-        { email: 'Invalid credentials' },
-        { password: 'Invalid credentials' },
-      ],
+      errors: { email: 'User does not exist with the specified email address' },
     });
   }
 
@@ -31,16 +42,13 @@ const login = async (req, res) => {
   } catch (err) {
     console.log(err);
     return res.json({
-      errors: [{ technical: 'Login failed please try again' }],
+      errors: { technical: 'Login failed please try again' },
     });
   }
 
   if (!isValidPassword) {
     return res.json({
-      errors: [
-        { email: 'Invalid credentials' },
-        { password: 'Invalid credentials' },
-      ],
+      errors: { email: 'Invalid credentials', password: 'Invalid credentials' },
     });
   }
 
@@ -54,7 +62,7 @@ const login = async (req, res) => {
   } catch (err) {
     console.log(err);
     return res.json({
-      errors: [{ technical: 'Login failed please try again' }],
+      errors: { technical: 'Login failed please try again' },
     });
   }
 
@@ -122,7 +130,7 @@ const register = async (req, res) => {
   } catch (err) {
     console.log(err);
     return res.json({
-      errors: [{ technical: 'Registration failed please try again' }],
+      errors: { technical: 'Registration failed please try again' },
     });
   }
 
@@ -136,7 +144,7 @@ const register = async (req, res) => {
   } catch (err) {
     console.log(err);
     return res.json({
-      errors: [{ technical: 'Registration failed please try again' }],
+      errors: { technical: 'Registration failed please try again' },
     });
   }
 
