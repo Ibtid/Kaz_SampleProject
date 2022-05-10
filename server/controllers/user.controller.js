@@ -78,7 +78,7 @@ const register = async (req, res) => {
     errors.push({ email: 'Enter a valid email address' });
   }
   if (password.length < 6) {
-    errors.push({ email: 'Password needs at least 6 characters' });
+    errors.push({ password: 'Password needs at least 6 characters' });
   }
   if (errors) {
     return res.json({ errors: errors });
