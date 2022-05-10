@@ -73,3 +73,16 @@
   cursor: pointer;
   color: var(--accent);
 }
+
+.red-border {
+  border: 0.1rem solid var(--red);
+}
+
+.authentication__inputError {
+  color: var(--red);
+  font-size: 0.7rem;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 0.2rem;
+  font-weight: 800;
+  letter-spacing: 0.02rem;
+}

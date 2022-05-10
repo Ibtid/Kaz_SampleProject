@@ -4,6 +4,7 @@ import './Authentication.css';
 
 const Authentication = () => {
   const [hasAccount, setHasAccount] = useState(false);
+  const [errors, setErrors] = useState();
 
   const [formData, setFormData] = useState({
     username: '',
@@ -19,7 +20,10 @@ const Authentication = () => {
     console.log(formData);
 
     register(formData).then((response) => {
-      console.log(response);
+      console.log(response.errors);
+      if (response.errors) {
+        setErrors(response.errors);
+      }
     });
   };
 
@@ -38,10 +42,19 @@ const Authentication = () => {
               name='username'
               type='text'
               placeholder='Your name'
-              className='authentication__input'
-              value={formData.userName}
+              className={
+                errors?.username
+                  ? 'authentication__input red-border'
+                  : 'authentication__input'
+              }
+              value={formData.username}
               onChange={onChangeFormData}
             />
+            {errors?.username && (
+              <div className='authentication__inputError'>
+                {errors.username}
+              </div>
+            )}
           </div>
         )}
         <div className='authentication__inputContainer'>
@@ -50,10 +63,17 @@ const Authentication = () => {
             name='email'
             type='text'
             placeholder='@gmail.com'
-            className='authentication__input'
+            className={
+              errors?.email
+                ? 'authentication__input red-border'
+                : 'authentication__input'
+            }
             value={formData.email}
             onChange={onChangeFormData}
           />
+          {errors?.email && (
+            <div className='authentication__inputError'>{errors.email}</div>
+          )}
         </div>
         <div className='authentication__inputContainer'>
           <div className='authentication__inputLabel'>Password</div>
@@ -61,10 +81,17 @@ const Authentication = () => {
             name='password'
             type='password'
             placeholder='Atleast 6 characters'
-            className='authentication__input'
+            className={
+              errors?.password
+                ? 'authentication__input red-border'
+                : 'authentication__input'
+            }
             value={formData.password}
             onChange={onChangeFormData}
           />
+          {errors?.password && (
+            <div className='authentication__inputError'>{errors.password}</div>
+          )}
         </div>
         {hasAccount ? (
           <div className='authentication__button' onClick={loginClicked}>

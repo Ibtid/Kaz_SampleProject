@@ -68,17 +68,17 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   const { username, email, password } = req.body;
-  let errors = [];
+  let errors = {};
   if (username.length === 0) {
-    errors.push({ username: 'Username cannot be empty' });
+    errors.username = 'Username cannot be empty';
   }
   if (email.length === 0) {
-    errors.push({ email: 'Email cannot be empty' });
+    errors.email = 'Email cannot be empty';
   } else if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
-    errors.push({ email: 'Enter a valid email address' });
+    errors.email = 'Enter a valid email address';
   }
   if (password.length < 6) {
-    errors.push({ password: 'Password needs at least 6 characters' });
+    errors.password = 'Password needs at least 6 characters';
   }
   if (errors) {
     return res.json({ errors: errors });
@@ -90,14 +90,14 @@ const register = async (req, res) => {
   } catch (err) {
     console.log(err);
     return res.json({
-      errors: [{ technical: 'Registration failed please try again' }],
+      errors: { technical: 'Registration failed please try again' },
     });
   }
 
   console.log(existingUser);
   if (existingUser) {
     return res.json({
-      errors: [{ email: 'User already exists' }],
+      errors: { email: 'User already exists' },
     });
   }
 
@@ -107,7 +107,7 @@ const register = async (req, res) => {
   } catch (err) {
     console.log(err);
     return res.json({
-      errors: [{ technical: 'Registration failed please try again' }],
+      errors: { technical: 'Registration failed please try again' },
     });
   }
 
